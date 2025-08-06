@@ -1,4 +1,5 @@
 import os
+import environ
 from pathlib import Path
 
 from dotenv import load_dotenv
@@ -6,6 +7,8 @@ from dotenv import load_dotenv
 load_dotenv()
 
 BASE_DIR = Path(__file__).resolve().parent.parent.parent
+env = environ.Env()
+environ.Env.read_env(os.path.join(BASE_DIR, '.env')) 
 SECRET_KEY = os.getenv("DJANGO_SECRET_KEY")
 ALLOWED_HOSTS = ["*"]
 
@@ -24,12 +27,13 @@ LOCAL_APPS = [
     "apps.users",
     "apps.news",
     "apps.courses",
-    "apps.text_services"
 ]
 
 EXTERNAL_APPS = ["daphne", "jazzmin", "rest_framework", "drf_yasg"]
 
 INSTALLED_APPS = LOCAL_APPS + EXTERNAL_APPS + DJANGO_APPS
+
+AUTH_USER_MODEL = "users.CustomUser"
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
@@ -63,17 +67,16 @@ ASGI_APPLICATION = "core.asgi.application"
 
 
 DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.postgresql",
-        "NAME": os.getenv("DB_NAME"),
-        "USER": os.getenv("DB_USER"),
-        "PASSWORD": os.getenv("DB_PASSWORD"),
-        "HOST": os.getenv("DB_HOST"),
-        "PORT": os.getenv("DB_PORT"),
-        "ATOMIC_REQUESTS": True,
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': env("DB_NAME"),
+        'USER': env("DB_USER"),
+        'PASSWORD': env("DB_PASSWORD"),
+        'HOST': env("DB_HOST", default="127.0.0.1"),
+        'PORT': env("DB_PORT", default="5432"),
+        'ATOMIC_REQUESTS': True,
     }
 }
-
 
 
 
