@@ -57,7 +57,7 @@ class Order(BaseModel):
 
 class Transaction(BaseModel):
     order =  models.ForeignKey(
-        "payments.Order", on_delete=models.CASCADE, verbose_name=_("orders")
+        "payments.Order", on_delete=models.CASCADE, verbose_name=_("order")
     )
     
     provider = models.ForeignKey(
@@ -84,8 +84,57 @@ class Transaction(BaseModel):
         verbose_name = _("Transaction")
         verbose_name_plural = _("Transactions")
 
-    # @property 
+    @property 
+    def get_payment_url(self):
+        payment_link = None
+        if self.provider.name == ProviderChoices.PAYLOV:
+            from apps.payments.paylov.client import PaylovClient
 
+            payment_link = PaylovClient.create_payment_link(self)
+        
+        return payment_link
+    
+    def apply_transaction(self, provider=None, transaction_id: str | None = None):
+        if not self.remote_id and transaction_id:
+            self.remote_id = str(transaction_id)
+            self.provider =  provider
+            self.paid_at = datetime.datetime.now()
+            self.status = TransactionStatus.COMPLETED
+
+        try:
+            with transaction.atomic():
+                self.save(
+                    update_fields=[
+                        "paid_at",
+                        "status",
+                        "remote_id",
+                        "provider"
+                    ]
+                )
+                self.order.status = OrderStatus.COMPLETED
+                self.order.is_paid = True if self.paid_at else False
+                self.order.save(update_fields=["is_paid", "status"])
+        
+        except Exception as e:
+            raise f"Error occured {e}"
+
+        return self 
+
+    def cancel_transaction(self, reason):
+        self.cancelled_at = datetime.datetime.now()
+        self.status = TransactionStatus.CANCELLED
+        self.extra = {"payment_cancel_reason": reason}
+        self.save(
+            update_fields=[
+                "cancelled_at",
+                "status"
+            ]
+        )
+
+        self.order.paid_at = None
+        self.order.save(update_fields = ["is_paid"])
+
+        return self
 
 
 class Providers(BaseModel):

@@ -4,7 +4,7 @@ import binascii
 from rest_framework import HTTP_HEADER_ENCODING
 from rest_framework.authentication import get_authorization_header
 
-from apps.payments.paylov.credentials import *
+from apps.payments.paylov.credentials import get_credentials
 
 
 def authentication(request) -> bool:
@@ -21,6 +21,8 @@ def authentication(request) -> bool:
         )
     except(TypeError, UnicodeDecodeError, binascii.Error):
         return False
+    
+    print(auth_parts)
     
     username, password = auth_parts[0], auth_parts[2]
     credentials = get_credentials()

@@ -11,6 +11,7 @@ dependencies = [
     "django-jazzmin>=3.0.1",
     "djangorestframework>=3.16.0",
     "drf-yasg>=1.21.10",
+    "httpx>=0.28.1",
     "pillow>=11.3.0",
     "psycopg[binary]>=3.2.9",
     "python-dotenv>=1.1.1",

@@ -21,6 +21,7 @@ class TransactionStatus(TextChoices):
     COMPLETED = ("completed", _("Completed"))
     FAILED = ("failed", _("Failed"))
     CANCELLED = ("cancelled", _("Cancelled"))
+    REFUNDED = ("refunded", _("Refunded"))
 
 
                       
