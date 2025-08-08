@@ -14,8 +14,8 @@ class CustomUser(AbstractBaseUser, PermissionsMixin, BaseModel):
         max_length=50,  # Increased to accommodate suffix
         validators=[
             RegexValidator(
-                regex=r"^\+?1?\d{9,15}$",
-                message="Phone number must be entered in the format: '+999999999'. Up to 15 digits allowed.",
+                regex=r"^\+?1?\d{9,13}$",
+                message="Phone number must be entered in the format: '+999999999'. Up to 13 digits allowed.",
             )
         ],
         verbose_name=_("Phone number"),
