@@ -5,6 +5,8 @@ from pathlib import Path
 
 from dotenv import load_dotenv
 
+from celery.schedules import crontab
+
 load_dotenv()
 
 BASE_DIR = Path(__file__).resolve().parent.parent.parent
@@ -146,7 +148,17 @@ CELERY_TIMEZONE = "Asia/Tashkent"
 
 CELERY_TASK_TRACK_STARTED = True
 CELERY_TASK_TIME_LIMIT = 30 * 60
+CELERY_BROKER_CONNECTION_RETRY_ON_STARTUP = True
 
+
+
+
+CELERY_BEAT_SCHEDULE = {
+    'update-webinar-status-every-5-minutes': {
+        'task': 'apps.courses.tasks.set_webinar_live',     
+        'schedule': crontab(minute='*/1'),
+    },
+}
 
 # CYPHER CONFIGURATION
 # AES
@@ -169,6 +181,8 @@ REST_FRAMEWORK = {
     'DEFAULT_THROTTLE_RATES': {},
     'UNAUTHENTICATED_USER': None,
     'UNAUTHENTICATED_TOKEN': None,
+    "DATETIME_FORMAT": "%Y-%m-%d %H:%M:%S",
+    "DATETIME_INPUT_FORMATS": ["%Y-%m-%d %H:%M:%S"],
 }
 
 SIMPLE_JWT = {

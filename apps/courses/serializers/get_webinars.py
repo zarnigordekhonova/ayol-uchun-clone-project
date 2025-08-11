@@ -11,6 +11,7 @@ class GetWebinarsSerializer(serializers.ModelSerializer):
     class Meta:
         model = Webinar
         fields = (
+            "id",
             "card", 
             "title",  
             "author_first_name",
@@ -18,4 +19,5 @@ class GetWebinarsSerializer(serializers.ModelSerializer):
             "category", 
             "price",
             "datetime",
+            "status",
         )

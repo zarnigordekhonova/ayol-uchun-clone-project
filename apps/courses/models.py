@@ -61,7 +61,11 @@ class Webinar(BaseModel):
         validators=[MinValueValidator(0), MaxValueValidator(5)],
         verbose_name=_("Rating"),
     )
-    
+    status = models.CharField(
+        choices=WebinarStatusChoices.choices, 
+        default=WebinarStatusChoices.UPCOMING,
+        verbose_name=_("Status")
+        )
     
     def __str__(self):
         return self.title
