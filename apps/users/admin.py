@@ -42,6 +42,7 @@ class UserAdmin(BaseUserAdmin):
                     "email",
                     "avatar",
                     "bio",
+                    "interests",
                     "reason_delete_choices",
                     "reason_delete_str",
                 )
