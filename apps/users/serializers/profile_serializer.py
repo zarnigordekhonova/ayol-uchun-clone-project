@@ -19,10 +19,10 @@ class GetProfileSerializer(serializers.ModelSerializer):
             "interests",
             "reason_delete_choices",
             "reason_delete_str",
-            "is_active", 
-            "is_confirmed"
+            "courses_purchased", 
+            "webinars_purchased"
         )
         read_only_fields = (
-            "is_active", 
-            "is_confirmed"
+            "courses_purchased", 
+            "webinars_purchased"
         )
