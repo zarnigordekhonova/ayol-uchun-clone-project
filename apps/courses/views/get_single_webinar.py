@@ -13,9 +13,9 @@ class GetSingleWebinarAPIView(RetrieveAPIView):
 
     def get(self, request, pk):
         try:
-            course = Webinar.objects.get(pk=pk)
+            webinar = Webinar.objects.get(pk=pk)
         except Webinar.DoesNotExist:
             return Response({"detail": "Webinar not found"}, status=status.HTTP_404_NOT_FOUND)
 
-        serializer = self.get_serializer(course)
+        serializer = self.get_serializer(webinar)
         return Response(serializer.data, status=status.HTTP_200_OK)

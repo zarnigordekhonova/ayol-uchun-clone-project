@@ -21,14 +21,14 @@ def get_credentials() -> tuple[str | None, str | None, str | None, str | None]:
         paylov_credentials.filter(key="PAYLOV_REDIRECT_URL").last(), "value", None
     )
 
-    print(
-        ">>>Paylov credentials:",
-        paylov_api_key,
-        paylov_username,
-        paylov_password,
-        paylov_subscription_key,
-        paylov_redirect_url
-    )
+    # print(
+    #     ">>>Paylov credentials:",
+    #     paylov_api_key,
+    #     paylov_username,
+    #     paylov_password,
+    #     paylov_subscription_key,
+    #     paylov_redirect_url
+    # )
 
     return {
         "PAYLOV_API_KEY" : paylov_api_key,

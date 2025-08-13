@@ -15,7 +15,20 @@ from apps.courses.views import (GetCoursesView,
                                 CreateCategoryAPIView,
                                 UpdateCategoryAPIView,
                                 GetCategoriesAPIView,
-                                CategoryDeleteAPIView
+                                CategoryDeleteAPIView,
+
+                                ModuleCreateAPIView,
+                                GetModulesListAPIView,
+                                ModuleUpdateAPIView,
+                                ModuleDeleteAPIView,
+
+                                LessonCreateAPIView,
+                                GetLessonsListAPIView,
+                                LessonUpdateAPIView,
+                                LessonDeleteAPIView,
+
+                                CourseCreateCommentAPIView,
+                                WebinarCreateCommentAPIView
                                 )
 
 app_name = "courses"
@@ -36,5 +49,19 @@ urlpatterns = [
     path("create-category/", CreateCategoryAPIView.as_view(), name="create-category"),
     path("update/<int:pk>/category/", UpdateCategoryAPIView.as_view(), name="update-category"),
     path("category-list/", GetCategoriesAPIView.as_view(), name="category-list"),
-    path("category/<int:pk>/delete/", CategoryDeleteAPIView.as_view(), name="category-delete")
+    path("category/<int:pk>/delete/", CategoryDeleteAPIView.as_view(), name="category-delete"),
+
+    path("module-create/", ModuleCreateAPIView.as_view(), name="module-create",),
+    path("module-list/", GetModulesListAPIView.as_view(), name="module-list"),
+    path("update/<int:pk>/module/", ModuleUpdateAPIView.as_view(), name="module-update"),
+    path("delete/<int:pk>/module/", ModuleDeleteAPIView.as_view(), name="modul-delete"),
+
+    path("lesson-create/", LessonCreateAPIView.as_view(), name="lesson-create"),
+    path("lesson-list/", GetLessonsListAPIView.as_view(), name="lesson-list"),
+    path("update/<int:pk>/lesson/", LessonUpdateAPIView.as_view(), name="lesson-update"),
+    path("delete/<int:pk>/lesson/", LessonDeleteAPIView.as_view(), name="delete-lesson"),
+
+    path("course-comment-create/", CourseCreateCommentAPIView.as_view(), name="course-comment-create"),
+    path("webinar-comment-create/", WebinarCreateCommentAPIView.as_view(), name="webinar-comment-create"),
+
 ]

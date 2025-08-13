@@ -7,6 +7,6 @@ class UpdateCategorySerializer(serializers.ModelSerializer):
     class Meta:
         model = Category
         fields = (
-            "title",
+            "name",
             "icon"
         )

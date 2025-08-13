@@ -9,10 +9,6 @@ from apps.courses.models import Category
 
 class CategoryDeleteAPIView(DestroyAPIView):
     queryset = Category.objects.all()
-    permission_classes = [IsAuthenticated, IsAdminUser]
+    permission_classes = [IsAdminUser]
 
-    def get_object(self):
-        category = get_object_or_404(Category, id=self.kwargs["pk"])
-        if category.author != self.request.user:
-            raise PermissionDenied("Siz faqatgina o'zingizga tegishli kategoriyani o'chirishingiz mumkin!")
-        return category
+    

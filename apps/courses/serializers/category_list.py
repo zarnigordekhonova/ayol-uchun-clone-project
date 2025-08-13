@@ -8,6 +8,6 @@ class GetCategorySerializer(serializers.ModelSerializer):
         model = Category
         fields = (
             "id",
-            "title",
+            "name",
             "icon"
         )

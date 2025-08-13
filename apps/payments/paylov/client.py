@@ -94,7 +94,7 @@ class PaylovClient:
     def create_payment_link(cls, transaction: Transaction) -> str:
         credentials = get_credentials()
         merchant_key = credentials["PAYLOV_API_KEY"]
-        print(">>>", credentials, merchant_key)
+        # print(">>>", credentials, merchant_key)
         return_url = urllib.parse.quote(
             credentials["PAYLOV_REDIRECT_URL"] + f"?transaction_id={transaction.id}",
             safe="",

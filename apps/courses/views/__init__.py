@@ -15,6 +15,18 @@ from .category_update import UpdateCategoryAPIView
 from .category_list import GetCategoriesAPIView
 from .category_delete import CategoryDeleteAPIView
 
+from .module_create import ModuleCreateAPIView
+from .modules_list import GetModulesListAPIView
+from .module_update import ModuleUpdateAPIView
+from .module_delete import ModuleDeleteAPIView
+
+from .lesson_create import LessonCreateAPIView
+from .lessons_list import GetLessonsListAPIView
+from .lesson_update import LessonUpdateAPIView
+from .lesson_delete import LessonDeleteAPIView
+
+from .comment_create import CourseCreateCommentAPIView, WebinarCreateCommentAPIView
+
 __all__ = [
     GetCoursesView,
     GetWebinarsAPIView,
@@ -32,4 +44,17 @@ __all__ = [
     UpdateCategoryAPIView,
     GetCategoriesAPIView,
     CategoryDeleteAPIView,
+
+    ModuleCreateAPIView,
+    GetModulesListAPIView,
+    ModuleUpdateAPIView,
+    ModuleDeleteAPIView,
+
+    LessonCreateAPIView,
+    GetLessonsListAPIView,
+    LessonUpdateAPIView,
+    LessonDeleteAPIView,
+
+    CourseCreateCommentAPIView,
+    WebinarCreateCommentAPIView,
 ]
