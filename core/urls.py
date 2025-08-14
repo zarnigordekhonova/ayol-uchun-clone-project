@@ -14,12 +14,12 @@ from .schema import swagger_urlpatterns
 
 urlpatterns = [
     path("admin/", admin.site.urls),
-    path("api/v1/common/", include("apps.common.urls", namespace="common")),
-    path("api/v1/courses/", include("apps.courses.urls", namespace="courses")),
-    path("api/v1/news/", include("apps.news.urls", namespace="news")),
-    path("api/v1/payments/", include("apps.payments.urls", namespace="payments")),
-    path("api/v1/paylov/", include("apps.payments.paylov.urls", namespace="paylov")),
-    path("api/v1/users/", include("apps.users.urls", namespace="users"))
+    path("api/common/", include("apps.common.urls", namespace="common")),
+    path("api/courses/", include("apps.courses.urls", namespace="courses")),
+    path("api/news/", include("apps.news.urls", namespace="news")),
+    path("api/payments/", include("apps.payments.urls", namespace="payments")),
+    path("api/paylov/", include("apps.payments.paylov.urls", namespace="paylov")),
+    path("api/users/", include("apps.users.urls", namespace="users"))
 ]
 
 urlpatterns += swagger_urlpatterns

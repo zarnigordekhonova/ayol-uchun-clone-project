@@ -1,11 +1,13 @@
-from .get_courses import GetCoursesSerializer
-from .get_webinars import GetWebinarsSerializer
-from .get_single_course import GetSingleCourseSerializer
-from .get_single_webinar import GetSingleWebinarSerializer
-from .finish_webinar import FinishWebinarSerializer
-from .course_update import CourseUpdateSerializer
-from .webinar_update import WebinarUpdateSerializer
+# Course
 from .course_create import CourseCreateSerializer
+from .course_list import GetCoursesSerializer
+from .course_get_single import GetSingleCourseSerializer
+from .course_update import CourseUpdateSerializer
+# Webinar
+from .webinar_list import GetWebinarsSerializer
+from .webinar_get_single import GetSingleWebinarSerializer
+from .webinar_finish import FinishWebinarSerializer
+from .webinar_update import WebinarUpdateSerializer
 from .webinar_create import WebinarCreateSerializer
 # Category
 from .category_create import CreateCategorySerializer
@@ -24,14 +26,16 @@ from .comment_create import CourseCommentCreateSerializer, WebinarCommentCreateS
 
 
 __all__ = [
+    # Course
     GetCoursesSerializer,
-    GetWebinarsSerializer,
     GetSingleCourseSerializer,
+    CourseUpdateSerializer,
+    CourseCreateSerializer,
+    # Webinar
+    GetWebinarsSerializer,
     GetSingleWebinarSerializer,
     FinishWebinarSerializer,
-    CourseUpdateSerializer,
     WebinarUpdateSerializer,
-    CourseCreateSerializer,
     WebinarCreateSerializer,
     # Category
     CreateCategorySerializer,

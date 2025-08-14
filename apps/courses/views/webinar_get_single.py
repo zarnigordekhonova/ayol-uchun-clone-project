@@ -8,6 +8,7 @@ from apps.courses.serializers import GetSingleWebinarSerializer
 
 
 class GetSingleWebinarAPIView(RetrieveAPIView):
+    queryset = Webinar.objects.all()
     serializer_class = GetSingleWebinarSerializer
     permission_classes = [IsAuthenticated]
 

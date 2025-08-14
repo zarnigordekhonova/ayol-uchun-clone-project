@@ -1,7 +1,7 @@
 from rest_framework import status
 from rest_framework.response import Response
 from rest_framework.generics import UpdateAPIView
-from rest_framework.permissions import IsAuthenticated, IsAdminUser
+from rest_framework.permissions import IsAdminUser
 
 from django.shortcuts import get_object_or_404
 
@@ -10,8 +10,9 @@ from apps.courses.serializers import CourseUpdateSerializer
 
 
 class UpdateCourseAPIView(UpdateAPIView):
+    queryset = Course.objects.all()
     serializer_class =  CourseUpdateSerializer
-    permission_classes = [IsAuthenticated | IsAdminUser]
+    permission_classes = [IsAdminUser]
 
     def get_object(self):
         course = get_object_or_404(Course, id=self.kwargs["pk"])

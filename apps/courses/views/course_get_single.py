@@ -8,6 +8,7 @@ from apps.courses.serializers import GetSingleCourseSerializer
 
 
 class GetSingleCourseAPIView(RetrieveAPIView):
+    queryset = Course.objects.all()
     serializer_class = GetSingleCourseSerializer
     permission_classes = [IsAuthenticated]
 

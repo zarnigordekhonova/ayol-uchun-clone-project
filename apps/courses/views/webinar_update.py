@@ -8,6 +8,7 @@ from apps.courses.serializers import WebinarUpdateSerializer
 
 
 class UpdateWebinarAPIView(UpdateAPIView):
+    queryset = Webinar.objects.all()
     serializer_class =  WebinarUpdateSerializer
     permission_classes = [IsAuthenticated | IsAdminUser]
 

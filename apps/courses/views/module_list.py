@@ -1,6 +1,6 @@
 from rest_framework import status
 from rest_framework.generics import ListAPIView
-from rest_framework.permissions import IsAdminUser
+from rest_framework.permissions import IsAdminUser, IsAuthenticated
 
 from apps.courses.models import Module
 from apps.courses.serializers import GetModulesListSerializer
