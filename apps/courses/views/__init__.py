@@ -28,6 +28,9 @@ from .lesson_update import LessonUpdateAPIView
 from .lesson_delete import LessonDeleteAPIView
 # Comment
 from .comment_create import CourseCreateCommentAPIView, WebinarCreateCommentAPIView
+from .comment_list import GetCourseCommentsListAPIView, GetWebinarCommentsListAPIView
+from .comment_update import UpdateCourseCommentAPIView, UpdateWebinarCommentAPIView
+from .comment_delete import DeleteCourseCommentAPIView, DeleteWebinarCommentAPIView
 
 __all__ = [
     # Course
@@ -61,4 +64,10 @@ __all__ = [
     # Comment
     CourseCreateCommentAPIView,
     WebinarCreateCommentAPIView,
+    GetCourseCommentsListAPIView,
+    GetWebinarCommentsListAPIView,
+    UpdateCourseCommentAPIView,
+    UpdateWebinarCommentAPIView,
+    DeleteCourseCommentAPIView,
+    DeleteWebinarCommentAPIView,
 ]

@@ -31,7 +31,13 @@ from apps.courses.views import (
                                 LessonDeleteAPIView,
                                 # Comment
                                 CourseCreateCommentAPIView,
-                                WebinarCreateCommentAPIView
+                                WebinarCreateCommentAPIView,
+                                GetCourseCommentsListAPIView,
+                                GetWebinarCommentsListAPIView,
+                                UpdateCourseCommentAPIView,
+                                UpdateWebinarCommentAPIView,
+                                DeleteCourseCommentAPIView,
+                                DeleteWebinarCommentAPIView,
                                 )
 
 app_name = "courses"
@@ -68,4 +74,10 @@ urlpatterns = [
     # Comment
     path("course-comment-create/", CourseCreateCommentAPIView.as_view(), name="course-comment-create"),
     path("webinar-comment-create/", WebinarCreateCommentAPIView.as_view(), name="webinar-comment-create"),
+    path("get-course-comments/", GetCourseCommentsListAPIView.as_view(), name='get-course-comments'),
+    path("get-webinar-comments/", GetWebinarCommentsListAPIView.as_view(), name="get-webinar-comments"),
+    path("update-course-comment/", UpdateCourseCommentAPIView.as_view(), name="update-course-comment"),
+    path("update-webinar-comment/", UpdateWebinarCommentAPIView.as_view(), name="update-webinar-comment"),
+    path("delete-course-comment/", DeleteCourseCommentAPIView.as_view(), name="delete-course-comment"),
+    path("delete-webinar-comment/", DeleteWebinarCommentAPIView.as_view(), name="delete-webinar-comment"),
 ]

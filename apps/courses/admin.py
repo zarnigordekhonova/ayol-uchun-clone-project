@@ -48,7 +48,7 @@ class LessonAdmin(admin.ModelAdmin):
 
 @admin.register(Comment)
 class CommentAdmin(admin.ModelAdmin):
-    list_display = ("id", "user__username", "course__title", "text", "rating")
+    list_display = ("id", "user__username", "course__title", "webinar__title", "text", "rating")
     list_display_links = ("id", "user__username")
     search_fields = ("user__username", "lesson__title")
     ordering = ("created_at",)

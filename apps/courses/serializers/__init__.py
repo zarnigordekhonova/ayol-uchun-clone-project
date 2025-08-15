@@ -23,6 +23,8 @@ from .lesson_list import GetLessonListSerializer
 from .lesson_update import LessonUpdateSerializer
 # Webinar
 from .comment_create import CourseCommentCreateSerializer, WebinarCommentCreateSerializer
+from .comment_list import CourseCommentsListSerializer, WebinarCommentsListSerializer
+from .comment_update import CommentUpdateSerializer
 
 
 __all__ = [
@@ -52,4 +54,7 @@ __all__ = [
     # Comment
     CourseCommentCreateSerializer,
     WebinarCommentCreateSerializer,
+    CourseCommentsListSerializer,
+    WebinarCommentsListSerializer,
+    CommentUpdateSerializer,
 ]
