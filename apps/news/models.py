@@ -28,8 +28,8 @@ class Event(BaseModel):
     )
     datetime = models.DateTimeField(verbose_name=_("Datetime"))
     location_name = models.CharField(max_length=255, verbose_name=_("Location Name"))
-    longitude = models.FloatField(verbose_name=_("Longitude"))
-    latitude = models.FloatField(verbose_name=_("Latitude"))
+    longitude = models.FloatField(verbose_name=_("Longitude"), null=True, blank=True)
+    latitude = models.FloatField(verbose_name=_("Latitude"), null=True, blank=True)
 
     def __str__(self):
         return self.title

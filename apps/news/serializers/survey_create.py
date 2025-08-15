@@ -1,23 +1,19 @@
 from rest_framework import serializers
 
-from apps.courses.models import Module, Course
+from apps.news.models import Survey
+from apps.courses.models import Course
 
 
-class GetCourseDataSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Course
-        fields = ["title"]
-
-
-class ModuleUpdateSerializer(serializers.ModelSerializer):
-    course = GetCourseDataSerializer(read_only=True)
+class SurveyCreateSerializer(serializers.ModelSerializer):
+    course = serializers.CharField(write_only=True)
 
     class Meta:
-        model = Module
+        model = Survey
         fields = (
             "course",
-            "name",
-            "icon"
+            "title",
+            "description",
+            "card",
         )
 
     def create(self, validated_data):
@@ -29,5 +25,5 @@ class ModuleUpdateSerializer(serializers.ModelSerializer):
         except Course.MultipleObjectsReturned:
             raise serializers.ValidationError({"Course": "Bunday nomda bir nechta kurs mavjud, aniq nom kiriting."})
         
-        module = Module.objects.create(course=course, **validated_data)
-        return module
+        survey = Survey.objects.create(course=course, **validated_data)
+        return survey
