@@ -27,6 +27,9 @@ from apps.news.views import (
     QuestionOptionUpdateAPIView,
     QuestionOptionDeleteAPIView,
     # UserAnswer
+    UserAnswerCreateAPIView,
+    UserAnswerListAPIView,
+    UserAnswerUpdateAPIView,
 )
 
 app_name = "news"
@@ -58,5 +61,8 @@ urlpatterns = [
     path("question-option/<int:pk>/update/", QuestionOptionUpdateAPIView.as_view(), name="question-option-update"),
     path("question-option/<int:pk>/delete/", QuestionOptionDeleteAPIView.as_view(), name="question-option-delete"),
     # UserAnswer
+    path("user-answer-create/", UserAnswerCreateAPIView.as_view(), name="user-answer-create"),
+    path("user-answer-list/", UserAnswerListAPIView.as_view(), name="user-answer-list"),
+    path("user-answer/<int:pk>/update/", UserAnswerUpdateAPIView.as_view(), name="user-answer-update/"),
     
 ]

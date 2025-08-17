@@ -24,6 +24,9 @@ from .questionoption_list import QuestionOptionListAPIView
 from .questionoption_update import QuestionOptionUpdateAPIView
 from .questionoption_delete import QuestionOptionDeleteAPIView
 # UserAnswer
+from .user_answer_create import UserAnswerCreateAPIView
+from .user_answer_list import UserAnswerListAPIView
+from .user_answer_update import UserAnswerUpdateAPIView
 
 
 __all__ = [
@@ -53,5 +56,7 @@ __all__ = [
     QuestionOptionUpdateAPIView,
     QuestionOptionDeleteAPIView,
     # UserAnswer
-
+    UserAnswerCreateAPIView,
+    UserAnswerListAPIView,
+    UserAnswerUpdateAPIView,
 ]

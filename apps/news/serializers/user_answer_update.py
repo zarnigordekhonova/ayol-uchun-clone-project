@@ -3,7 +3,7 @@ from rest_framework import serializers
 from apps.news.models import UserAnswer, Question, QuestionOption
 
 
-class UpdateUserAnswerSerializer(serializers.ModelSerializer):
+class UserAnswerUpdateSerializer(serializers.ModelSerializer):
     '''
     User uchun validatsiya views.py da yoziladi, ya'ni user.id == request.user.id
     '''

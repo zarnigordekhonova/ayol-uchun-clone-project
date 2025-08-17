@@ -21,6 +21,7 @@ from .questionoption_update import QuestionOptionUpdateSerializer
 # UserAnswer
 from .user_answer_create import UserAnswerCreateSerializer
 from .user_answer_list import UserAnswersListSerializer
+from .user_answer_update import UserAnswerUpdateSerializer
 
 
 __all__ = [
@@ -47,5 +48,5 @@ __all__ = [
     # UserAnswer
     UserAnswerCreateSerializer,
     UserAnswersListSerializer,
-    
+    UserAnswerUpdateSerializer,
 ]
