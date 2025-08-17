@@ -4,10 +4,6 @@ from apps.news.models import UserAnswer, Question, QuestionOption
 
 
 class UserAnswerUpdateSerializer(serializers.ModelSerializer):
-    '''
-    User uchun validatsiya views.py da yoziladi, ya'ni user.id == request.user.id
-    '''
-
     question = serializers.PrimaryKeyRelatedField(
         queryset=Question.objects.all(),
         write_only=True
@@ -17,10 +13,15 @@ class UserAnswerUpdateSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = UserAnswer
-        fields = ("user", "question", "chosen_option_title", "text_answer")
+        fields = ("question", "chosen_option_title", "text_answer")
 
     def validate(self, attrs):
-        question = attrs.get("question")
+        question = attrs.get("question") or getattr(self.instance, "question", None)
+        if not question:
+            raise serializers.ValidationError({
+                "question": "Savol aniqlanmadi."
+            })
+
         chosen_option_title = attrs.get("chosen_option_title", "").strip()
         text_answer = attrs.get("text_answer", "").strip()
 
@@ -49,9 +50,9 @@ class UserAnswerUpdateSerializer(serializers.ModelSerializer):
 
         return attrs
 
-    def create(self, validated_data):
+    def update(self, instance, validated_data):
         chosen_option_title = validated_data.pop("chosen_option_title", "").strip()
-        question = validated_data["question"]
+        question = validated_data.get("question", instance.question)
 
         chosen_option_obj = None
         if question.type != "open_answer":
@@ -60,13 +61,11 @@ class UserAnswerUpdateSerializer(serializers.ModelSerializer):
                 title=chosen_option_title
             )
 
-        user_answer = UserAnswer.objects.create(
-            user=validated_data["user"],
-            question=question,
-            chosen_option=chosen_option_obj,
-            text_answer=validated_data.get("text_answer", "")
-        )
-        return user_answer
+        instance.question = question
+        instance.chosen_option = chosen_option_obj
+        instance.text_answer = validated_data.get("text_answer", instance.text_answer)
+        instance.save()
+        return instance
 
     def to_representation(self, instance):
         return {

@@ -8,6 +8,7 @@ from apps.news.serializers import EventUpdateSerializer
 
 
 class EventUpdateAPIView(RetrieveUpdateAPIView):
+    queryset = Event.objects.all()
     serializer_class =  EventUpdateSerializer
     permission_classes = [IsAdminUser]
 

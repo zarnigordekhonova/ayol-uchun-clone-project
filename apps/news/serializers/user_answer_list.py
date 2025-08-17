@@ -19,7 +19,7 @@ class UserAnswerGetQuestionDataSerializer(serializers.ModelSerializer):
 
 class UserAnswersListSerializer(serializers.ModelSerializer):
     user = serializers.CharField(source="user.username", read_only=True)
-    question = UserAnswerGetQuestionDataSerializer(many=True, read_only=True)
+    question = UserAnswerGetQuestionDataSerializer(read_only=True)
     chosen_option = serializers.CharField(source="chosen_option.title", read_only=True)
 
     class Meta:

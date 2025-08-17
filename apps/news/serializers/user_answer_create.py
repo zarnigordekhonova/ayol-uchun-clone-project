@@ -13,7 +13,7 @@ class UserAnswerCreateSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = UserAnswer
-        fields = ("user", "question", "chosen_option_title", "text_answer")
+        fields = ("question", "chosen_option_title", "text_answer")
 
     def validate(self, attrs):
         question = attrs.get("question")

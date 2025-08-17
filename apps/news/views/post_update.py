@@ -8,6 +8,7 @@ from apps.news.serializers import PostUpdateSerializer
 
 
 class PostUpdateAPIView(RetrieveUpdateAPIView):
+    queryset = Post.objects.all()
     serializer_class =  PostUpdateSerializer
     permission_classes = [IsAdminUser]
 
@@ -19,3 +20,4 @@ class PostUpdateAPIView(RetrieveUpdateAPIView):
 
         serializer = self.get_serializer(post)
         return Response(serializer.data, status=status.HTTP_200_OK)
+    

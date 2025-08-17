@@ -10,5 +10,6 @@ class EventCreateSerializer(serializers.ModelSerializer):
             "title",
             "description",
             "card",
-            "location_name",
+            "datetime",
+            "location_name"
         )

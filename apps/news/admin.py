@@ -21,7 +21,7 @@ class PostAdmin(admin.ModelAdmin):
 
 @admin.register(Event)
 class PostAdmin(admin.ModelAdmin):
-    list_display = ("id", "title", "created_at", "updated_at")
+    list_display = ("id", "title", "datetime", "location_name", "created_at", "updated_at")
     list_display_links = ("id", "title")
     list_filter = ("created_at", "updated_at")
     search_fields = ("title",)

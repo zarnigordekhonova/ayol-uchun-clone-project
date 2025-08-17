@@ -6,6 +6,7 @@ from apps.news.models import Event
 class EventUpdateSerializer(serializers.ModelSerializer):
     longitude = serializers.FloatField(read_only=True)
     latitude = serializers.FloatField(read_only=True)
+    card = serializers.FileField(read_only=True)
 
     class Meta:
         model = Event
@@ -23,7 +24,7 @@ class EventUpdateSerializer(serializers.ModelSerializer):
         return {
             "title": instance.title,
             "description" : instance.description,
-            "card": instance.card,
+            "card": instance.card.url if instance.card else None,
             "datetime" : instance.datetime,
             "location_name" : instance.location_name,
             "longitude" : instance.longitude,

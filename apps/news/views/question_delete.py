@@ -1,17 +1,18 @@
 from rest_framework import status
 from rest_framework.response import Response
 from rest_framework.permissions import IsAdminUser
-from rest_framework.generics import RetrieveDestroyAPIView
+from rest_framework.generics import DestroyAPIView
 
 from apps.news.models import Question
 
 
-class QuestionDeleteAPIView(RetrieveDestroyAPIView):
+class QuestionDeleteAPIView(DestroyAPIView):
+    queryset = Question.objects.all()
     permission_classes = [IsAdminUser]
 
-    def get(self, request, pk):
+    def delete(self, request, *args, **kwargs):
         try:
-            question = Question.objects.get(pk=pk)
+            question = self.get_object()
         except Question.DoesNotExist:
             return Response({"detail": "Bu id dagi so'rovnoma savoli topilmadi!"}, status=status.HTTP_404_NOT_FOUND)
 
