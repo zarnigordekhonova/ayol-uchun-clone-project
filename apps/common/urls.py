@@ -7,7 +7,7 @@ from apps.common.homepage import home
 app_name = "common"
 
 urlpatterns = [
-    path("", home, name="home"),
+   
     path(
         "FrontendTranslations/",
         FrontendTranslationView.as_view(),

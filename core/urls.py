@@ -11,9 +11,12 @@ from django.urls import include, path
 
 from .schema import swagger_urlpatterns
 
+from apps.common.homepage import home
+
 
 urlpatterns = [
     path("admin/", admin.site.urls),
+    path("", home, name="home"),
     path("api/common/", include("apps.common.urls", namespace="common")),
     path("api/courses/", include("apps.courses.urls", namespace="courses")),
     path("api/news/", include("apps.news.urls", namespace="news")),
