@@ -20,8 +20,8 @@ class ModuleUpdateSerializer(serializers.ModelSerializer):
             "icon"
         )
 
-    def create(self, validated_data):
-        course_name = validated_data.pop("course")
+    def update(self, instance, validated_data):
+        course_name = validated_data.pop("course", None)
         try: 
             course = Course.objects.get(title=course_name)
         except Course.DoesNotExist:
@@ -29,5 +29,9 @@ class ModuleUpdateSerializer(serializers.ModelSerializer):
         except Course.MultipleObjectsReturned:
             raise serializers.ValidationError({"Course": "Bunday nomda bir nechta kurs mavjud, aniq nom kiriting."})
         
-        module = Module.objects.create(course=course, **validated_data)
-        return module
+        instance.course = course
+        
+        for attr, value in validated_data.items():
+            setattr(instance, attr, value)
+        instance.save()
+        return instance

@@ -208,6 +208,6 @@ EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 EMAIL_HOST_USER = 'zarnigor1008@gmail.com'
-EMAIL_HOST_PASSWORD = 'ddtw zfkl jzms ehqk'
+EMAIL_HOST_PASSWORD = 'hpcr cfry wkyy rcpd '
 EMAIL_USE_SSL = False
 DEFAULT_FROM_EMAIL = 'zarnigor1008@gmail.com'

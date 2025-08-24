@@ -22,7 +22,7 @@ class SurveyUpdateSerializer(serializers.ModelSerializer):
             "card",
         )
 
-    def create(self, validated_data):
+    def update(self, instance, validated_data):
         course_name = validated_data.pop("course")
         try: 
             course = Course.objects.get(title=course_name)
@@ -31,5 +31,9 @@ class SurveyUpdateSerializer(serializers.ModelSerializer):
         except Course.MultipleObjectsReturned:
             raise serializers.ValidationError({"Course": "Bunday nomda bir nechta kurs mavjud, aniq nom kiriting."})
         
-        survey = Survey.objects.create(course=course, **validated_data)
-        return survey
+        instance.course = course
+
+        for attr, value in validated_data.items():
+            setattr(instance, attr, value)
+        instance.save()
+        return instance

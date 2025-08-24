@@ -2,11 +2,11 @@ from rest_framework.response import Response
 from rest_framework.generics import CreateAPIView
 from rest_framework.permissions import AllowAny
 
+from django.core.mail import send_mail
 from django.utils.encoding import force_bytes
 from django.contrib.auth import get_user_model
 from django.template.loader import render_to_string
 from django.utils.http import urlsafe_base64_encode
-from django.core.mail import EmailMultiAlternatives
 from django.contrib.auth.tokens import default_token_generator
 
 from apps.users.serializers import UserRegisterSerializer
@@ -28,23 +28,22 @@ class UserRegisterAPIView(CreateAPIView):
         token = default_token_generator.make_token(user)
         scheme = "https" if request.is_secure() else "http"
         current_site = request.get_host()
-        activation_link = f"{scheme}://{current_site}/users/activate/{uid}/{token}/"
+        activation_link = f"{scheme}://{current_site}/api/users/activate/{uid}/{token}/"
 
         html_content = render_to_string('email/activation_email.html', {
             'user': user,
             'activation_link': activation_link
         })
-        text_content = f"Please click the link to activate your account: {activation_link}"
 
-        email = EmailMultiAlternatives(
+        send_mail(
             subject="Akkountingizni faollashtiring",
-            body=text_content,
+            message="Your email client does not support HTML. Please click the link.",
             from_email="zarnigor1008@gmail.com",
-            to=[user.email],
+            recipient_list=[user.email],
+            html_message=html_content,
         )
-        email.attach_alternative(html_content, "text/html")
-        email.send()
-        
+        print("User email", user.email)
+        print("After sending email", activation_link)
         return Response({"detail": "Activation email sent. Please check your inbox."}, status=201)
 
 

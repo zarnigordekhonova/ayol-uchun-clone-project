@@ -28,7 +28,7 @@ class UserAdmin(BaseUserAdmin):
         "first_name",
         "last_name",
     )
-    ordering = ("phone_number",)
+    ordering = ("id",)
     actions = [deactivate_users]
 
     fieldsets = (

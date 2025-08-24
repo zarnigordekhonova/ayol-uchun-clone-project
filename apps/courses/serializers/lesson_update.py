@@ -22,14 +22,19 @@ class LessonUpdateSerializer(serializers.ModelSerializer):
             "duration",
         )
 
-    def create(self, validated_data):
-        module_name = validated_data.pop("module")
+    def update(self, instance, validated_data):
+        module_name = validated_data.pop("module", None)
         try: 
-            module = Lesson.objects.get(title=module_name)
-        except Lesson.DoesNotExist:
+            module = Module.objects.get(name=module_name)
+        except Module.DoesNotExist:
             raise serializers.ValidationError({"Lesson": "Bunday nomdagi modul mavjud emas."})
-        except Lesson.MultipleObjectsReturned:
+        except Module.MultipleObjectsReturned:
             raise serializers.ValidationError({"Lesson": "Bunday nomda bir nechta modul mavjud, aniq nom kiriting."})
         
-        lesson = Lesson.objects.create(module=module, **validated_data)
-        return lesson
+        instance.module = module
+        
+        for attr, value in validated_data.items():
+            setattr(instance, attr, value)
+        instance.save()
+        return instance
+    
