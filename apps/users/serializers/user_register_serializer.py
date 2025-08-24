@@ -14,6 +14,7 @@ class UserRegisterSerializer(serializers.ModelSerializer):
         fields = (
             "username",
             "phone_number",
+            "email",
             "password",
         )
         extra_kwargs = {"password" : {"write_only": True}}
@@ -24,11 +25,11 @@ class UserRegisterSerializer(serializers.ModelSerializer):
             phone_number = validated_data["phone_number"] 
         )
         user.set_password(validated_data["password"])
+        user.is_active = False
         user.save()
         return user
     
     def to_representation(self, instance):
-        print("INSTANCE", instance)
         return { 
             "Username": instance.username,
             "Phone number": instance.phone_number,
