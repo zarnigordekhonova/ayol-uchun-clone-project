@@ -155,7 +155,7 @@ CELERY_BROKER_CONNECTION_RETRY_ON_STARTUP = True
 CELERY_BEAT_SCHEDULE = {
     'update-webinar-status-every-5-minutes': {
         'task': 'apps.courses.tasks.set_webinar_live',     
-        'schedule': crontab(minute='*/1'),
+        'schedule': crontab(minute='*/5'),
     },
 }
 

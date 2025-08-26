@@ -3,10 +3,10 @@ from django.utils import timezone
 from apps.courses.models import Webinar
 
 @app.task()
-def set_all_upcoming_live():
+def set_all_upcoming_live(webinar_id):
     now = timezone.now()
-    webinars = Webinar.objects.filter(status="upcoming", datetime__lte=now)
-    for webinar in webinars:
+    webinar = Webinar.objects.get(id=webinar_id)
+    if webinar.status == "upcoming" and webinar.datetime <= now:
         webinar.status = "live"
         webinar.save()
         print(f"✅ Webinar {webinar.id} is now live!")

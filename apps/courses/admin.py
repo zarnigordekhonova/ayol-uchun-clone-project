@@ -10,6 +10,7 @@ class CourseAdmin(admin.ModelAdmin):
     list_filter = ("category",)
     search_fields = ("title", "category__name")
     ordering = ("created_at",)
+    exclude = ("rating",)
 
 
 @admin.register(Webinar)

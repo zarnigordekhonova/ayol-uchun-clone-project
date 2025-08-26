@@ -29,7 +29,7 @@ class Course(BaseModel):
     )
     rating = models.FloatField(
         validators=[MinValueValidator(0), MaxValueValidator(5)],
-        verbose_name=_("Rating"),
+        verbose_name=_("Rating"), null=True, blank=True
     )
 
     def __str__(self):

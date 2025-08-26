@@ -13,4 +13,4 @@ app = Celery("core")
 app.config_from_object("django.conf:settings", namespace="CELERY")
 
 # Load task modules from all registered Django apps.
-app.autodiscover_tasks()
+app.autodiscover_tasks(["apps.courses"])
