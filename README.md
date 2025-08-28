@@ -51,6 +51,7 @@ uv sync
 ```bash
 source venv/bin/activate  # Linux/Mac
 venv\Scripts\activate     # Windows
+```
 
 ### 3. Run database migrations
 
@@ -63,4 +64,5 @@ python manage.py migrate
 ```bash
 python manage.py runserver
 ```
+
 
