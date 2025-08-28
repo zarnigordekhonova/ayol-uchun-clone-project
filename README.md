@@ -1,7 +1,6 @@
 # 🌸 Ayol Uchun Clone Project
 
 [![Build](https://img.shields.io/badge/build-passing-brightgreen)]()
-[![License](https://img.shields.io/badge/license-MIT-blue)]()
 [![Django](https://img.shields.io/badge/django-4.2+-green)]()
 [![DRF](https://img.shields.io/badge/drf-3.x-red)]()
 [![PostgreSQL](https://img.shields.io/badge/postgresql-15+-blue)]()
@@ -64,3 +63,4 @@ python manage.py migrate
 ```bash
 python manage.py runserver
 ```
+
